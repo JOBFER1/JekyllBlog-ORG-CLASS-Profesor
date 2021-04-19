@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+<div style="border-style: solid; border-radius: 25px;">
+<ol>
+$$f(x) = \int_{-\infty}^\infty \hat f(\xi)\,e^{2 \pi i \xi x} \,d\xi$$
+$$mean = \frac{\displaystyle\sum_{i=1}^{n} x_{i}}{n}$$
+
+{%- for col in site.collections %}
+{%- unless col.label == "posts" %}
+<li> Colección: {{ col.label }} </li>
+  <ol>
+  {%-  assign firstdocs = col.docs | slice: 0,3 %}
+  {%- for elem in firstdocs %}
+    {%- if elem.visible %}
+    <li> <b>path:</b> {{ elem.path }} <b>url:</b> {{ elem.url }}</li>
+    <p>{{ elem.content  | markdownify }}</p>
+    {%- endif %}
+  {%- endfor %}
+  </ol>
+{%- endunless  %}
+{%- endfor %}
+</ol>
+</div>
+
